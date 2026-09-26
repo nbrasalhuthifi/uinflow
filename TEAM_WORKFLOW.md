@@ -1,39 +1,67 @@
-# Team Workflow
-
-## تقسيم مقترح للفريق
-
-### عضو 1
-
-- Students
-- Admissions
-- Programs
-- Courses
-- Plans
-- Enrollments
-
-### عضو 2
-
-- Supervisors
-- Research
-- Theses
-- Committees
-- Graduation
-
-### عضو 3
-
-- Auth
-- Dashboard
-- Reports
-- Lookup
-- Notifications
-- UI / CSS / JavaScript
-
-## قواعد الدمج
-
-- لا تعدل ملفات Module آخر بدون تنسيق.
-- منطق الأعمال يذهب إلى Service.
-- SQL يذهب إلى Repository.
-- Controller يستقبل الطلب ويستدعي Service فقط.
-- View لا تحتوي SQL.
-- لا تضع HTML داخل Repository أو Service.
-- أي عملية متعددة الخطوات تستخدم Transaction.
+هيكل المشروع
+UniFlow_Graduate_Studies/
+│
+├── app/
+│   ├── Core/
+│   ├── Middleware/
+│   ├── Services/
+│   ├── Helpers/
+│   │
+│   └── Modules/
+│       ├── Students/
+│       ├── Admissions/
+│       ├── Departments/
+│       ├── Programs/
+│       ├── Courses/
+│       ├── Plans/
+│       ├── Enrollments/
+│       ├── Supervisors/
+│       ├── Research/
+│       ├── Theses/
+│       ├── Committees/
+│       ├── Graduation/
+│       ├── Auth/
+│       ├── Admin/
+│       ├── Dashboard/
+│       ├── Reports/
+│       ├── Lookup/
+│       └── Documents/
+│
+├── views/
+│   ├── students/
+│   ├── admissions/
+│   ├── departments/
+│   ├── programs/
+│   ├── courses/
+│   ├── plans/
+│   ├── enrollments/
+│   ├── academic/
+│   ├── supervisors/
+│   ├── research/
+│   ├── theses/
+│   ├── committees/
+│   ├── graduation/
+│   ├── auth/
+│   ├── admin/
+│   ├── dashboard/
+│   ├── reports/
+│   ├── search/
+│   ├── documents/
+│   ├── layouts/
+│   └── components/
+│
+├── public/
+│   ├── index.php
+│   ├── assets/
+│   └── uploads/
+│
+├── config/
+├── routes/
+├── database/
+├── tests/
+├── storage/
+│
+├── .env.example
+├── .gitignore
+├── README.md
+└── TEAM_WORKFLOW.md
