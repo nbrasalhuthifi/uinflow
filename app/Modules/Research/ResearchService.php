@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+final class ResearchService
+{
+    public function create(array $data): int { Validator::required($data,['student_id'=>'الطالب','supervisor_id'=>'المشرف','title'=>'عنوان البحث']);$sid=(int)$data['student_id'];$sup=(int)$data['supervisor_id'];$r=new ResearchRepository();if(!$r->studentExists($sid))throw new InvalidArgumentException('الطالب غير موجود أو غير نشط.');if(!$r->supervisorAssignedToStudent($sup,$sid))throw new InvalidArgumentException('المشرف غير مرتبط بهذا الطالب.');if($r->hasOpenProposal($sid))throw new InvalidArgumentException('لدى الطالب مقترح بحث مفتوح بالفعل.');$id=$r->create([$sid,$sup,trim($data['title']),trim((string)($data['abstract']??''))]);audit('CREATE','research_proposal',$id);return $id; }
+    public function status(int $id,string $status): void { if(!in_array($status,['SUBMITTED','UNDER_REVIEW','APPROVED','REJECTED'],true))throw new InvalidArgumentException('حالة البحث غير صالحة.');$r=new ResearchRepository();$row=$r->find($id);if(!$row)throw new InvalidArgumentException('البحث غير موجود.');
+        $role=current_user()['role']??''; if($role==='SUPERVISOR'){ $q=Database::connection()->prepare('SELECT sv.id FROM supervisors sv WHERE sv.user_id=?');$q->execute([(int)current_user()['id']]);$supId=(int)$q->fetchColumn();if(!$supId||$supId!==(int)$row['supervisor_id'])throw new RuntimeException('لا يمكنك تعديل بحث ليس تحت إشرافك.'); }
+        $transitions=['SUBMITTED'=>['UNDER_REVIEW','REJECTED'],'UNDER_REVIEW'=>['APPROVED','REJECTED'],'APPROVED'=>[],'REJECTED'=>['SUBMITTED']]; if($status!==$row['status']&&!in_array($status,$transitions[$row['status']]??[],true))throw new InvalidArgumentException('انتقال حالة البحث غير مسموح.');$r->setStatus($id,$status);audit('STATUS','research_proposal',$id,['from'=>$row['status'],'to'=>$status]); }
+}
