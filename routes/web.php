@@ -1,0 +1,25 @@
+<?php
+declare(strict_types=1);
+return [
+ 'students'=>['index'=>[StudentController::class,'index'],'save'=>[StudentController::class,'save'],'delete'=>[StudentController::class,'delete']],
+ 'departments'=>['index'=>[DepartmentController::class,'index'],'save'=>[DepartmentController::class,'save'],'delete'=>[DepartmentController::class,'delete']],
+ 'programs'=>['index'=>[ProgramController::class,'index'],'save'=>[ProgramController::class,'save'],'delete'=>[ProgramController::class,'delete']],
+ 'courses'=>['index'=>[CourseController::class,'index'],'save'=>[CourseController::class,'save'],'delete'=>[CourseController::class,'delete']],
+ 'admissions'=>['index'=>[AdmissionController::class,'index'],'save'=>[AdmissionController::class,'save'],'status'=>[AdmissionController::class,'status'],'enroll'=>[AdmissionController::class,'enroll']],
+ 'plans'=>['index'=>[PlanController::class,'index'],'save'=>[PlanController::class,'save'],'status'=>[PlanController::class,'status'],'delete'=>[PlanController::class,'delete']],
+ 'enrollments'=>['index'=>[EnrollmentController::class,'index'],'save'=>[EnrollmentController::class,'save'],'update'=>[EnrollmentController::class,'update'],'delete'=>[EnrollmentController::class,'delete']],
+ 'supervisors'=>['index'=>[SupervisorController::class,'index'],'save'=>[SupervisorController::class,'save']],
+ 'research'=>['index'=>[ResearchController::class,'index'],'save'=>[ResearchController::class,'save'],'status'=>[ResearchController::class,'status']],
+ 'theses'=>['index'=>[ThesisController::class,'index'],'save'=>[ThesisController::class,'save'],'status'=>[ThesisController::class,'status']],
+ 'committees'=>['index'=>[CommitteeController::class,'index'],'save'=>[CommitteeController::class,'save'],'defense'=>[CommitteeController::class,'defense']],
+ 'graduation'=>['index'=>[GraduationController::class,'index'],'approve'=>[GraduationController::class,'approve']],
+ 'reports'=>['index'=>[ReportController::class,'index'],'export'=>[ReportController::class,'export']],
+ 'lookup'=>['search'=>[LookupController::class,'search']],
+ 'admin-users'=>['index'=>[AdminController::class,'users'],'save'=>[AdminController::class,'saveUser'],'role-permissions'=>[AdminController::class,'rolePermissions'],'grant'=>[AdminController::class,'permissions'],'revoke'=>[AdminController::class,'revokePermission']],
+ 'academic'=>['index'=>[AdminController::class,'academic'],'save-year'=>[AdminController::class,'saveYear'],'save-semester'=>[AdminController::class,'saveSemester']],
+ 'notifications'=>['index'=>[AdminController::class,'notifications'],'read'=>[AdminController::class,'readNotification']],
+ 'audit'=>['index'=>[AdminController::class,'audit']],
+ 'search'=>['index'=>[AdminController::class,'search']],
+ 'profile'=>['index'=>[AdminController::class,'profile'],'assign-supervisor'=>[AdminController::class,'assignSupervisor'],'remove-supervisor'=>[AdminController::class,'removeSupervisor']],
+ 'documents'=>['index'=>[DocumentController::class,'index'],'upload'=>[DocumentController::class,'upload'],'download'=>[DocumentController::class,'download']],
+];
