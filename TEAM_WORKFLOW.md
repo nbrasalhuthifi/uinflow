@@ -1,4 +1,5 @@
-هيكل المشروع
+هيكلية المشروع
+
 UniFlow_Graduate_Studies/
 │
 ├── app/
